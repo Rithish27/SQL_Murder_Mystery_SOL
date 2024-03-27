@@ -1,4 +1,4 @@
-# SQL_Murder_Mystery_SOL
+# SQL_Murder_Mystery_SOLUTION
 # solved using Basic SQL
 
 This is an Intresting Murder Mystery one can solve using SQL (Structured Query Language) to find out "murdere" with basic SQL concepts.
