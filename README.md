@@ -17,6 +17,8 @@ Let's start
 
 From the limited information we had we will start solving this case!
 stage 1: We'll fetch the report from "crime_scene_report" table by the information we have
+
+        Fetch report from "crime_scene_report" table
         SELECT *
         FROM crime_scene_report
         WHERE type = 'murder' AND 
@@ -48,7 +50,93 @@ stage 2: From the above report we got to know that we got 2 witnesses.
 
 stage 3: After finding details about witnesses let's see what they have to say about the murder!
 
-         Explore the details about their interrogation from "interview" table
+        Explore the details about their interrogation from "interview" table
+        SELECT *
+        FROM interview
+        WHERE person_id = 14887;
+
+![image](https://github.com/Rithish27/SQL_Murder_Mystery_SOL/assets/91436355/29090e9f-5f97-45dd-a8b6-2df0fa7510a1)
+
+        SELECT *
+        FROM interview
+        WHERE person_id = 16371;
+
+![image](https://github.com/Rithish27/SQL_Murder_Mystery_SOL/assets/91436355/88908af7-21e2-41cd-924a-6240c863a4f9)
+
+stage 4: From the interrogation we can search for the murderer with the details we have
+
+        Search for suspect from "get_fit_now_member" table
+        SELECT *
+        FROM get_fit_now_member
+        WHERE membership_status = 'gold' AND id LIKE "48Z%";
+
+
+![image](https://github.com/Rithish27/SQL_Murder_Mystery_SOL/assets/91436355/3d345309-0b39-4be9-a947-4103eddb0dc4)
+
+stage 5: We got the details of two suspects by this information.
+
+        Let's explore the interview table and search for interrogation.
+        SELECT *
+        FROM interview
+        WHERE person_id in (28819,67318);
+
+![image](https://github.com/Rithish27/SQL_Murder_Mystery_SOL/assets/91436355/7c46f658-b4fb-4be3-a8bb-e7c3529c5e1f)
+
+stage 6: We found the one who did it but need to find the master mind behind this!
+
+        From the limited data that we have we can search for "Master Mind Behind"
+
+        We can search for people who attended event from "facebook_event_checkin" table
+
+        SELECT COUNT(person_id) as no_of_times,person_id
+        FROM facebook_event_checkin
+        WHERE event_name = "SQL Symphony Concert" AND (date > 20171201 AND date < 20171231)
+        GROUP BY person_id
+        ORDER BY COUNT(person_id) DESC;
+
+![image](https://github.com/Rithish27/SQL_Murder_Mystery_SOL/assets/91436355/c57c6d92-cfaf-47d9-86f5-c33acf9ac345)
+
+stage 7: We found that there are two suspects from the info that we have.
+
+        Let's get more details about suspects from "person" table
+        SELECT *
+        FROM person
+        WHERE id in (24556,99716);
+        
+![image](https://github.com/Rithish27/SQL_Murder_Mystery_SOL/assets/91436355/dc7a4487-c5a1-4be6-a06f-434621ce3d81)
+
+        --> we also know that she had a lot of money in her account (ssn number)
+        
+        Let's find who had more money in account to pay "HIT MAN"
+        SELECT *
+        FROM income
+        WHERE ssn in (816663882,987756388);
+
+![image](https://github.com/Rithish27/SQL_Murder_Mystery_SOL/assets/91436355/ff392709-3186-4b43-a22b-5190d890de3f)
+
+        --> By simply finding the person with this ssn number we can find who's is the actual "Murderrer"
+
+
+SOL:--> "Miranda Priestly" is the actual Murderrer
+
+Let's check for our solution
+
+![image](https://github.com/Rithish27/SQL_Murder_Mystery_SOL/assets/91436355/d978dd96-e2ce-4fd8-a7bb-79c9e436881e)
+
+
+Thank you for reading!
+
+
+credits:
+The SQL Murder Mystery was created by Joon Park and Cathy He while they were Knight Lab fellows. See the GitHub repository "https://github.com/NUKnightLab/sql-mysteries" for more information.Adapted and produced for the web by Joe Germuska.
+
+
+
+
+
+
+
+
          
 
          
