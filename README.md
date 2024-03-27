@@ -17,8 +17,8 @@ Let's start
 
 From the limited information we had we will start solving this case!
 stage 1: We'll fetch the report from "crime_scene_report" table by the information we have
-
         Fetch report from "crime_scene_report" table
+        
         SELECT *
         FROM crime_scene_report
         WHERE type = 'murder' AND 
@@ -31,8 +31,8 @@ stage 1: We'll fetch the report from "crime_scene_report" table by the informati
 stage 2: From the above report we got to know that we got 2 witnesses.
          1—>last house on “Northwestern Dr’
          2—> name: ”Annabel” lives at "Franklin Ave"
-
          Let's find details about witnesses from "person" table.
+         
          SELECT *
          FROM person
          WHERE address_street_name = "Northwestern Dr"
@@ -49,8 +49,8 @@ stage 2: From the above report we got to know that we got 2 witnesses.
 
 
 stage 3: After finding details about witnesses let's see what they have to say about the murder!
-
         Explore the details about their interrogation from "interview" table
+        
         SELECT *
         FROM interview
         WHERE person_id = 14887;
@@ -64,8 +64,8 @@ stage 3: After finding details about witnesses let's see what they have to say a
 ![image](https://github.com/Rithish27/SQL_Murder_Mystery_SOL/assets/91436355/88908af7-21e2-41cd-924a-6240c863a4f9)
 
 stage 4: From the interrogation we can search for the murderer with the details we have
-
         Search for suspect from "get_fit_now_member" table
+        
         SELECT *
         FROM get_fit_now_member
         WHERE membership_status = 'gold' AND id LIKE "48Z%";
@@ -74,8 +74,8 @@ stage 4: From the interrogation we can search for the murderer with the details 
 ![image](https://github.com/Rithish27/SQL_Murder_Mystery_SOL/assets/91436355/3d345309-0b39-4be9-a947-4103eddb0dc4)
 
 stage 5: We got the details of two suspects by this information.
-
         Let's explore the interview table and search for interrogation.
+        
         SELECT *
         FROM interview
         WHERE person_id in (28819,67318);
@@ -97,8 +97,8 @@ stage 6: We found the one who did it but need to find the master mind behind thi
 ![image](https://github.com/Rithish27/SQL_Murder_Mystery_SOL/assets/91436355/c57c6d92-cfaf-47d9-86f5-c33acf9ac345)
 
 stage 7: We found that there are two suspects from the info that we have.
-
         Let's get more details about suspects from "person" table
+        
         SELECT *
         FROM person
         WHERE id in (24556,99716);
@@ -106,8 +106,8 @@ stage 7: We found that there are two suspects from the info that we have.
 ![image](https://github.com/Rithish27/SQL_Murder_Mystery_SOL/assets/91436355/dc7a4487-c5a1-4be6-a06f-434621ce3d81)
 
         --> we also know that she had a lot of money in her account (ssn number)
-        
         Let's find who had more money in account to pay "HIT MAN"
+        
         SELECT *
         FROM income
         WHERE ssn in (816663882,987756388);
